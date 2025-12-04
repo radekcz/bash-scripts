@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
 start=$(date +%s%3N)
+set -euo pipefail
 
 DIR_NAME="./archived"
 TOTAL_FILES=1000
