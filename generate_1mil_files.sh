@@ -18,7 +18,7 @@ for ((i=1; i<=TOTAL_FILES; i++)); do
     # Faster: write random bytes directly
     head -c "$FILE_SIZE" /dev/urandom > "$DIR_NAME/$FILE_NAME"
 
-    if (( i % 50 == 0 )); then
+    if (( i % 100 == 0 )); then
         echo "$i files generated..."
     fi
 done
