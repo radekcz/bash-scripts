@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+start=$(date +%s%3N)
+
 DIR_NAME="./archived"
 TOTAL_FILES=1000
 FILE_SIZE=1024
@@ -12,11 +14,16 @@ echo "Generating $TOTAL_FILES files (~$FILE_SIZE bytes each) in $DIR_NAME..."
 
 for ((i=1; i<=TOTAL_FILES; i++)); do
     FILE_NAME="file_$(printf "%07d" "$i").txt"
-    tr -dc "A-Za-z0-9 " < /dev/urandom | head -c "$FILE_SIZE" > "$DIR_NAME/$FILE_NAME"
 
-    if (( i % 500 == 0 )); then
+    # Faster: write random bytes directly
+    head -c "$FILE_SIZE" /dev/urandom > "$DIR_NAME/$FILE_NAME"
+
+    if (( i % 50 == 0 )); then
         echo "$i files generated..."
     fi
 done
 
 echo "Done! Generated $TOTAL_FILES files in $DIR_NAME."
+
+end=$(date +%s%3N)
+echo "Duration: $((end - start)) ms"
