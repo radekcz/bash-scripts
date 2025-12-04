@@ -15,7 +15,7 @@ for ((i=1; i<=TOTAL_FILES; i++)); do
     FILE_NAME="file_$(printf "%07d" "$i").txt"
 
     # Generate random letters (a-z, A-Z) to reach FILE_SIZE bytes
-    head -c $((FILE_SIZE * 4)) /dev/urandom | tr -dc 'a-zA-Z' | head -c "$FILE_SIZE" > "$DIR_NAME/$FILE_NAME"
+    head -c $((FILE_SIZE * 5)) /dev/urandom | tr -dc 'a-zA-Z' | head -c "$FILE_SIZE" > "$DIR_NAME/$FILE_NAME"
 
     if (( i % 100 == 0 )); then
         echo "$i files generated..."
